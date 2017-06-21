@@ -15,11 +15,11 @@ MyPass <- "HolaPapitos785+" #From Shiny interface
 
 #URLand Path for the IBM Forms Tool, using JSON
 url  <- "https://w3-01.ibm.com"
-path <- "/tools/cio/forms-basic/secure/org/data/bbe9380e-6976-44ef-8475-9aaac239b01f/F_Form1?format=application/json"
+path <- "/tools/cio/forms-basic/secure/org/data/98fdd9e5-4671-448a-8578-9a71a719ecc6/F_Form1?format=application/json"
 #**********************************************
 
 #Extracting the data from the API using GET
-raw.result <- GET(url = url, path = path, authenticate(MyUser,MyPass))
+raw.result <- GET(url = url, path = path, authenticate("gesalas@cr.ibm.com","Watanagashi393+"))
 #**********************************************
 
 

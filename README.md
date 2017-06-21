@@ -9,7 +9,7 @@ https://www.ibm.com/support/knowledgecenter/SS6KJL_8.6.4/FEB/ref_data_access_res
 
 ## The dataprocessing.R
 
-- Under Construction....need to merge Johnny code with Kevin Code!!!!
+- Under Construction....need to merge Johnny code with Kevin code!!!!
 
 
 ## ./data folder
