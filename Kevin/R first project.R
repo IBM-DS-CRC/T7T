@@ -345,6 +345,7 @@ myvars <- names(DtFrame) %in% c("lastModifiedBy", "createdBy", "Attachment",
 DtFrame <- DtFrame [,!myvars]
 
 
+
 #Removing signs of punctuation from headers, this will help us to filter
 
 names(DtFrame)<- gsub("[:]" ,"", names(DtFrame))
@@ -357,6 +358,7 @@ Preprocessed_Form <- subset(DtFrame, ID !="")
 #Selecting IMT US and Canada
 
 Preprocessed_Form<- subset(Preprocessed_Form, Preprocessed_Form$IMT == "US" | Preprocessed_Form$IMT == "Canada")
+
 
 
 # Changing the sector name for Canada when IMT is Canada
@@ -381,6 +383,8 @@ InProgress_PCRS<- subset(Preprocessed_Form, `PCR State`== PCR_STATE_Inprogress &
 InProgress_PCRS$PCRs_Status<- "In Progress"
 
 
+
+
 # Subsetting data in order to obtain the set that we need
 
 Approved_PCRs <- subset(Preprocessed_Form, `PCR State` == "Approved" | `PCR State` == "PE approved, but waiting on Billing" | 
@@ -392,13 +396,19 @@ Approved_PCRs$PCRs_Status<- "Approved"
 
 
 
+
+
 ## Gives the first part of pending dataset
 
-FirstPendingDSet<-subset(Preprocessed_Form, `PCR State`== PCR_STATE_Inprogress & is.na(`TTIM Approve Date`) == TRUE)
+Preprocessed_Form$`TTIM Approve Date`<- as.character(Preprocessed_Form$`TTIM Approve Date`)
+
+FirstPendingSet<-subset(Preprocessed_Form, `PCR State`== PCR_STATE_Inprogress & Preprocessed_Form$`TTIM Approve Date` =="")
 
 ## Adding the column and the status
 
-FirstPendingDSet$PCRs_Status<- "Other"
+FirstPendingSet$PCRs_Status<- "Other"
+
+
 
 #Gives the second part of pending dataset
 
@@ -411,11 +421,18 @@ SecondPendingDSet <- subset(Preprocessed_Form,  `PCR State` != "PE approved, but
 SecondPendingDSet$PCRs_Status<- "Other"
 
 
+
 # Merge all in one uinque archive
 
-Semifinal_Dc<- rbind(InProgress_PCRS,Approved_PCRs, FirstPendingDSet, SecondPendingDSet)
+DtFrame<- rbind(InProgress_PCRS,Approved_PCRs, FirstPendingSet, SecondPendingDSet)
+
 
 # This will be Johnny's input 
+
+
+
+
+
 
 
 ## Solo de prueba por el momento
@@ -423,6 +440,8 @@ Semifinal_Dc<- rbind(InProgress_PCRS,Approved_PCRs, FirstPendingDSet, SecondPend
 library(xlsx)
 
 write.xlsx(DtFrame,"c:/mydata1.xlsx")
+
+
 
 
 
