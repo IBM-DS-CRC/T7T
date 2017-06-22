@@ -40,7 +40,7 @@ shinyServer(function(input, output) {
         })
     })
     
-    # Procedure to download the report from IBM Form
+    # Download the report from IBM Form
     downloadReport <- function(x){
         url  <- "https://w3-01.ibm.com"
         path <- "https://w3-01.ibm.com/tools/cio/forms-basic/secure/org/data/98fdd9e5-4671-448a-8578-9a71a719ecc6/F_Form1?format=application/json"
@@ -56,7 +56,25 @@ shinyServer(function(input, output) {
         dataframeTT <<- dataframeTT[,!myvars]
     }
     
-    # Procedure to change variables names:
+    # Change variables names
+    
+    # Delete blanks from ID Column
+    
+    # North American Accounts
+    
+    # Sector Info
+    
+    # In Progress PCRs
+    
+    # Approved PCRs
+    
+    # Dates
+    
+    # Days In Progress
+    
+    # PCRs over 10 Days
+    
+    # Days since PCR was created
     
     
     # Button to download file:    
