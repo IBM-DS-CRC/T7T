@@ -9,4 +9,9 @@ https://www.ibm.com/support/knowledgecenter/SS6KJL_8.6.4/FEB/ref_data_access_res
 
 ## The dataprocessing.R
 
-- Under Construction....
+- Under Construction....need to merge Johnny code with Kevin code!!!!
+
+
+## ./data folder
+
+- Path to save tem files or information, just in case we need it.

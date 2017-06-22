@@ -9,7 +9,7 @@ library(lubridate)
 url  <- "https://w3-01.ibm.com"
 path <- "https://w3-01.ibm.com/tools/cio/forms-basic/secure/org/data/98fdd9e5-4671-448a-8578-9a71a719ecc6/F_Form1?format=application/json"
 
-raw.result <- GET(path, authenticate("johnalva@cr.ibm.com", "johALVME143"))
+raw.result <- GET(path, authenticate("login@cr.ibm.com", "password"))
 names(raw.result)
 raw.result$status_code
 head(raw.result$content)

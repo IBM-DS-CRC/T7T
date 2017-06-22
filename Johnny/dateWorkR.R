@@ -20,7 +20,7 @@ for(i in 1:nrow(df1)){
     }
 }
 
-# Account= Fleetcor, the sector is “Communications” 
+# Account= Fleetcor, the sector is “Communication” 
 for(i in 1:nrow(df1)){
     if(df1$Account.Name.[i] == "Fleetcor"){
         df1$Account.Name.[i] = "Communications"
