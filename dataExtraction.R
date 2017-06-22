@@ -19,7 +19,7 @@ path <- "/tools/cio/forms-basic/secure/org/data/98fdd9e5-4671-448a-8578-9a71a719
 #**********************************************
 
 #Extracting the data from the API using GET
-raw.result <- GET(url = url, path = path, authenticate("gesalas@cr.ibm.com","Watanagashi393+"))
+raw.result <- GET(url = url, path = path, authenticate(MyUser,MyPass))
 #**********************************************
 
 
