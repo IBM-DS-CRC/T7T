@@ -10,10 +10,8 @@ library(dplyr)
 library(lubridate)
 library(httr)
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output) {
  
-   
     observeEvent(input$do, {
         # Download Report from IBM Form
         downloadReport()
