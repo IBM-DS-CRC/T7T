@@ -229,6 +229,109 @@ colnames(DtFrame)[which(names(DtFrame) == "F_recordid")] <- "RID"
 
 colnames(DtFrame)[which(names(DtFrame) == "F_ttimapprovedate")] <- "TTIM Approve Date:"
 
+colnames(DtFrame)[which(names(DtFrame) == "F_todaydate")] <- "Next Approval Date"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_responseid")] <- "Response ID"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_PCRClassHistory")] <- "PCR Class History"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_accountinitials")] <- "Account Initials"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_xmbackup")] <- "XM-Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttimbackup")] <- "TTIM Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_tsmbackup")] <- "TSM Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_cfm")] <- "CFM:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_cfmbackup")] <- "CFM Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_cfmapprovedate")] <- "CFM Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_buttonpressed")] <- "Button Pressed:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_dpe")] <- "DPE:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_dpebackup")] <- "DPE Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_dpeapprovedate")] <- "DPE Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pe")] <- "PE:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pebackup")] <- "PE BAckup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_peapprovedate")] <- "PE Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pfmdirector")] <- "PfM Director:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pfmdirectorbackup")] <- "Pfm Director Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pfmapprovedate")] <- "Pfm Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_pfm2ndapprovedate")] <- "Pfm 2nd Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_fsmfa")] <- "FSM/FA:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_fsmfabackup")] <- "FSM/FA BAckup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_faapprovedate")] <- "FA Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_linktothisform")] <- "Link to this form:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_solutioning")] <- "Solutioning:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_solutioningbackup")] <- "Solutioning Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_solutioningapprovedate")] <- "Solutioning Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_industryvp")] <- "Industry VP:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_industryvpbackup")] <- "Industry VP Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ivpapprovedate")] <- "Industry VP Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttvp")] <- "T&T VP:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttvpbackup")] <- "T&T VP Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttvpapprovedate")] <- "T&T Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_gm")] <- "GM:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_gmbackup")] <- "GM Backup:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_gmapprovedate")] <- "GM Approve Date:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Paragraphtext6")] <- "To ac"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_Paragraphtext7")] <- "To nt"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_subjectactionrequired")] <- "subject ac"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_subjectnotification")] <- "subject nt"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_contentactionrequired")] <- "content ac"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_contentnotification")] <- "content nt"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_finalapproval")] <- "PCR Final Approval Date"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_hold")] <- "Hold Date - Time:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_unhold")] <- "UnHold Date - Time:"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttie")] <- "TTIE"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttiebackup")] <- "TTIE Backup"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_hasttie")] <- "does the account has a ttie?"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_ttie")] <- "TTIE"
+
+colnames(DtFrame)[which(names(DtFrame) == "F_impactrevenue")] <- "Is there any Impact to Revenue?"
+
+
 
 ## Needs to be updated
 
@@ -236,10 +339,10 @@ colnames(DtFrame)[which(names(DtFrame) == "F_ttimapprovedate")] <- "TTIM Approve
 
 myvars <- names(DtFrame) %in% c("lastModifiedBy", "createdBy", "Attachment",
                             "Attachment_1","Attachment_2","Attachment_3", 
-                            "createdBy", "F_Table1", "F_Table2", "availableSubmitButtons")
+                            "createdBy", "F_Table1", "F_Table2", "availableSubmitButtons",
+                            "Cost Summary")
 
 DtFrame <- DtFrame [,!myvars]
-
 
 
 
@@ -249,12 +352,13 @@ names(DtFrame)<- gsub("[:]" ,"", names(DtFrame))
 
 #Creating a view without blancks ID's
 
-Preprocessed_Form <- subset(Form_PMO, ID !="")
+Preprocessed_Form <- subset(DtFrame, ID !="")
 
 
 #Selecting IMT US and Canada
 
 Preprocessed_Form<- subset(Preprocessed_Form, Preprocessed_Form$IMT == "US" | Preprocessed_Form$IMT == "Canada")
+
 
 
 # Changing the sector name for Canada when IMT is Canada
@@ -273,16 +377,18 @@ PCR_STATE_Inprogress<- "In Progress"
 PCR_STATEDate_Inprogress<-""
 
 # Subsetting data in order to obtain the set that we need
-InProgress_PCRS<- subset(Preprocessed_Form, PCRState== PCR_STATE_Inprogress & TTIMApproveDate !=PCR_STATEDate_Inprogress)
+InProgress_PCRS<- subset(Preprocessed_Form, `PCR State`== PCR_STATE_Inprogress & `TTIM Approve Date`!=PCR_STATEDate_Inprogress)
 
 ## Adding a new column to see status
 InProgress_PCRS$PCRs_Status<- "In Progress"
 
 
+
+
 # Subsetting data in order to obtain the set that we need
 
-Approved_PCRs <- subset(Preprocessed_Form, PCRState == "Approved" | PCRState == "PE approved, but waiting on Billing" | 
-                          PCRState =="Approved and funds received" | PCRState=="Approved but waiting on billing")
+Approved_PCRs <- subset(Preprocessed_Form, `PCR State` == "Approved" | `PCR State` == "PE approved, but waiting on Billing" | 
+                          `PCR State` =="Approved and funds received" | `PCR State`=="Approved but waiting on billing")
 
 #Adding the new Column to see Status
 
@@ -290,36 +396,52 @@ Approved_PCRs$PCRs_Status<- "Approved"
 
 
 
+
+
 ## Gives the first part of pending dataset
 
-FirstPendingDSet<-subset(Preprocessed_Form, PCRState== PCR_STATE_Inprogress & is.na(TTIMApproveDate) == TRUE)
+Preprocessed_Form$`TTIM Approve Date`<- as.character(Preprocessed_Form$`TTIM Approve Date`)
+
+FirstPendingSet<-subset(Preprocessed_Form, `PCR State`== PCR_STATE_Inprogress & Preprocessed_Form$`TTIM Approve Date` =="")
 
 ## Adding the column and the status
-FirstPendingDSet$PCRs_Status<- "Other"
+
+FirstPendingSet$PCRs_Status<- "Other"
+
+
 
 #Gives the second part of pending dataset
 
-SecondPendingDSet <- subset(Preprocessed_Form,  PCRState != "PE approved, but waiting on Billing" & PCRState != "Approved" &
-                              PCRState != PCR_STATE_Inprogress &  PCRState != "Approved and funds received" &
-                              PCRState != "Approved but waiting on billing")
+SecondPendingDSet <- subset(Preprocessed_Form,  `PCR State` != "PE approved, but waiting on Billing" & `PCR State` != "Approved" &
+                              `PCR State` != PCR_STATE_Inprogress &  `PCR State` != "Approved and funds received" &
+                              `PCR State` != "Approved but waiting on billing")
 
 ## Adding the column and the Status
 
 SecondPendingDSet$PCRs_Status<- "Other"
 
 
+
 # Merge all in one uinque archive
 
-Semifinal_Dc<- rbind(InProgress_PCRS,Approved_PCRs, FirstPendingDSet, SecondPendingDSet)
+DtFrame<- rbind(InProgress_PCRS,Approved_PCRs, FirstPendingSet, SecondPendingDSet)
+
 
 # This will be Johnny's input 
+
+
+
+
+
 
 
 ## Solo de prueba por el momento
 
 library(xlsx)
 
-write.csv(DtFrame,"c:/mydata1.csv")
+write.xlsx(DtFrame,"c:/mydata1.xlsx")
+
+
 
 
 
