@@ -11,46 +11,60 @@ library(RJSONIO)
 library(httr)
 library(jsonlite)
 library(lubridate)
+library(stringi)
+
+#Username and Pass for the IBM Forms, methot is curl and the app is not allowing anon connections, so we are using secure connections.
+MyUser <- "kurbina@cr.ibm.com"
+MyPass <- "Holahol!@#$"
+
+#********************************
 
 
+#URLand Path for the IBM Forms Tool, using JSON
 url  <- "https://w3-01.ibm.com"
-path <- "https://w3-01.ibm.com/tools/cio/forms-basic/secure/org/data/bbe9380e-6976-44ef-8475-9aaac239b01f/F_Form1?format=application/json"
+path <- "/tools/cio/forms-basic/secure/org/data/98fdd9e5-4671-448a-8578-9a71a719ecc6/F_Form1?format=application/json"
+#**********************************************
+
+#Extracting the data from the API using GET
+raw.result <- GET(url = url, path = path, authenticate(MyUser,MyPass))
+
+#**********************************************
 
 
-Res<- get(path, authenticate("kurbina@cr.ibm.com", "Holahol!@#$"))
+#Exploratory Data Analysis
+Names <- names(raw.result)
 
-raw.result <- GET(url = url, path = path)
+rawResuld <- raw.result$status_code
 
-
-names(raw.result)
-
-raw.result$status_code
-
-head(raw.result$content)
+headResult <- head(raw.result$content)
 
 this.raw.content <- rawToChar(raw.result$content)
 
 nchar(this.raw.content)
 
-substr(this.raw.content, 1, 100)
+substr(this.raw.content, 1, 135)
 
 this.content <- fromJSON(this.raw.content)
 
-class(this.content) #it's a list
+#class(this.content) 
 
-length(this.content) #it's a large list
+#length(this.content) 
 
-this.content[[4]] #the list
+this.content[[4]] #the list we need 
 
 this.content$items
 
 class(this.content$items)
+#************************************************
 
+#Creating the Data Frame in order to start cleaning the data, this variable will be used in the dataprocessing.R script
 DtFrame <- this.content$items
+#************************************************
 
+# Changing each column name
 
-
-
+colnames(DtFrame)[which(names(DtFrame) == "id")] <- "ID"
+colnames(DtFrame)[which(names(DtFrame) == "F_SingleLine2")] <- "PCR Number"
 
 
 #Converting into a Data Frame
@@ -138,4 +152,8 @@ write.csv(Semifinal_Dc,"c:/mydata.csv")
 
 
 ## Watson API
+
+
+URL<- https://api.ibm.com/watsonanalytics/run/oauth2/v1/config
+
 
