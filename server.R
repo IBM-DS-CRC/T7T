@@ -225,6 +225,8 @@ shinyServer(function(input, output) {
         dataframeTT <<- x
     }
     
+    
+    
     # Days In Progress
     # Adding a new data with variables of  In Progres PCRs
     # Adding variables
@@ -301,6 +303,10 @@ shinyServer(function(input, output) {
         dataframeTT <<- x
     }
     
+    
+    
+    
+    
     # Days since PCR was created
     pcrCreated <- function(x){
         x$`PCR Created Days` <- NA
@@ -323,7 +329,7 @@ shinyServer(function(input, output) {
     output$downloadTT <- downloadHandler(
         filename = function(){'TTFinanceReport.csv'},
         content = function(file){
-            write.csv(dataframeTT, file)
+            write.csv(dataframeTT, file, row.names = FALSE)
         }
     )
 })
