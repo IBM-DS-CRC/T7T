@@ -373,7 +373,7 @@ for(i in 1:nrow(Preprocessed_Form)){
 
 # Adding a new data with variables of  In Progres PCRs
 # Adding variables
-PCR_STATE_Inprogress<- "In Progress"
+
 PCR_STATEDate_Inprogress<-""
 
 # Subsetting data in order to obtain the set that we need
