@@ -35,16 +35,19 @@ shinyServer(function(input, output) {
         datesTT(dataframeTT)
         
         # 4. In Progress PCRs:
-        inProgress(dataframeTT)
+        
         
         # 5. Approved PCRs
-        pcrOver10F(dataframeTT)
+        
         
         # 7. # Days In Progress:
+        inProgress(dataframeTT)
         
         # 8. PCRs over 10 Days
+        pcrOver10F(dataframeTT)
         
         # 9. Days since PCR was created:
+        pcrCreated(dataframeTT)
         
         # Response once report is really to download.
         output$response <- renderText({
@@ -250,6 +253,7 @@ shinyServer(function(input, output) {
     
     # Dates
     datesTT <- function(x){
+        x$`PCR Final Approval Date` <- parse_date_time(x$`PCR Final Approval Date`, "%m/%d/%y HM", tz = "America/Guatemala")
         x$`TTIM Approve Date` <- parse_date_time(x$`TTIM Approve Date`, "%m/%d/%y HM", tz = "America/Guatemala")
         x$`Budget Start Date` <- strptime(dataframeTT$`Budget Start Date`, format = "%Y-%m-%d")
         x$`Budget End Date` <- strptime(dataframeTT$`Budget End Date`, format = "%Y-%m-%d")
@@ -266,6 +270,7 @@ shinyServer(function(input, output) {
         x$`Server Time` <- parse_date_time(x$`Server Time`, "%m/%d/%y HM", tz = "America/Guatemala")
         x$`Server Time`  <- as.Date(x$`Server Time`, tz = "America/Guatemala")
         x$`TTIM Approve Date` <- as.Date(x$`TTIM Approve Date`, tz = "America/Guatemala")
+        x$`PCR Final Approval Date` <- as.Date(x$`PCR Final Approval Date`, tz = "America/Guatemala")
         
         # Month Creation
         x$`Month Budget Start Date` <- month(x$`Budget Start Date`)
@@ -278,6 +283,7 @@ shinyServer(function(input, output) {
         x$Monthcreated <- month(x$created)
         x$`Month Server Time`  <- month(x$`Server Time`)
         x$`Month TTIM Approve Date` <- month(x$`TTIM Approve Date`)
+        x$`Month PCR Final Approval Date` <- month(x$`PCR Final Approval Date`)
 
         # Year Creation
         x$`Year Budget Start Date` <- year(x$`Budget Start Date`)
@@ -290,6 +296,7 @@ shinyServer(function(input, output) {
         x$Yearcreated <- year(x$created)
         x$`Year Server Time`  <- year(x$`Server Time`)
         x$`Year TTIM Approve Date` <- year(x$`TTIM Approve Date`)
+        x$`Year PCR Final Approval Date` <- year(x$`PCR Final Approval Date`)
         
         dataframeTT <<- x
     }
