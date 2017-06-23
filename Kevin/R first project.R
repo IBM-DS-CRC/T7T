@@ -16,8 +16,8 @@ library(devtools)
 
 
 #Username and Pass for the IBM Forms, methot is curl and the app is not allowing anon connections, so we are using secure connections.
-MyUser <- "kurbina@cr.ibm.com" 
-MyPass <- "Holahol!@#$" 
+MyUser <- "" 
+MyPass <- "" 
 
 #********************************
 
