@@ -327,7 +327,7 @@ shinyServer(function(input, output) {
 
     # Button to download file:    
     output$downloadTT <- downloadHandler(
-        filename = function(){'TTFinanceReport.csv'},
+        filename = function(){paste('TTFinanceReport',Sys.Date(),'.csv')},
         content = function(file){
             write.csv(dataframeTT, file, row.names = FALSE)
         }
