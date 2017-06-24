@@ -14,7 +14,7 @@ dashboardPage(
     dashboardBody(
         # Boxes need to be put in a row (or column)
         fluidRow(
-            box(textOutput("response"))
+            textOutput("response")
         )
     )
 )

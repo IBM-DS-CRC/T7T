@@ -49,6 +49,9 @@ shinyServer(function(input, output) {
         # 9. Days since PCR was created:
         pcrCreated(dataframeTT)
         
+        # Format conversion:
+        formatCoversion(dataframeTT)
+        
         # Response once report is really to download.
         output$response <- renderText({
             "Your data is really to download"
@@ -302,10 +305,94 @@ shinyServer(function(input, output) {
         
         dataframeTT <<- x
     }
-    
-    
-    
-    
+    ##################################################################
+    ## Convert to numeric
+    formatCoversion <- function(x){
+        
+        # Remove $ sign
+        x$`T&T Total` <- sub('[$]','',as.character(x$`T&T Total`))
+        x$`SS Total` <- sub('[$]','',as.character(x$`SS Total`))
+        x$`PCR Total (USD)` <- sub('[$]','', as.character(x$`PCR Total (USD)`))
+        x$`T&T Non-Labor Cost` <- sub('[$]','', as.character(x$`T&T Non-Labor Cost`))
+        x$`T&T Labor Cost` <- sub('[$]','', as.character(x$`T&T Labor Cost`))
+        x$`T&T Labor Hours` <- sub('[$]','', as.character(x$`T&T Labor Hours`))
+        x$`T&T Total.1` <- sub('[$]','', as.character(x$`T&T Total.1`))
+        x$`SS Non-Labor Cost` <- sub('[$]','', as.character(x$`SS Non-Labor Cost`))
+        x$`SS Labor Cost` <- sub('[$]','', as.character(x$`SS Labor Cost`))
+        x$`SS Labor Hours` <- sub('[$]','', as.character(x$`SS Labor Hours`))
+        x$`SS Total (Est)` <- sub('[$]','', as.character(x$`SS Total (Est)`))
+        x$`Total Non-Labor` <- sub('[$]','', as.character(x$`Total Non-Labor`))
+        x$`Total Labor` <- sub('[$]','', as.character(x$`Total Labor`))
+        x$`PCR Total - Hours` <- sub('[$]','', as.character(x$`PCR Total - Hours`))
+        x$`PCR Total (USD).1` <- sub('[$]','', as.character(x$`PCR Total (USD).1`))
+        x$`SS Labor Cost` <- sub('[$]','', as.character(x$`SS Labor Cost`))
+        x$`Sub-Projects` <- sub('[$]','', as.character(x$`Sub-Projects`))
+        
+        #Convert to a factor
+        x$`T&T Total` <- as.factor(x$`T&T Total`)
+        x$`SS Total` <-as.factor(x$`SS Total`)
+        x$`PCR Total (USD)` <- as.factor(x$`PCR Total (USD)`)
+        x$`T&T Non-Labor Cost` <- as.factor(x$`T&T Non-Labor Cost`)
+        x$`T&T Labor Cost` <- as.factor(x$`T&T Labor Cost`)
+        x$`T&T Labor Hours` <- as.factor(x$`T&T Labor Hours`)
+        x$`T&T Total.1` <- as.factor(x$`T&T Total.1`)
+        x$`SS Non-Labor Cost` <- as.factor(x$`SS Non-Labor Cost`)
+        x$`SS Labor Cost` <- as.factor(x$`SS Labor Cost`)
+        x$`SS Labor Hours` <- as.factor(x$`SS Labor Hours`)
+        x$`SS Total (Est)` <- as.factor(x$`SS Total (Est)`)
+        x$`Total Non-Labor` <- as.factor(x$`Total Non-Labor`)
+        x$`Total Labor` <- as.factor(x$`Total Labor`)
+        x$`PCR Total - Hours` <- as.factor(x$`PCR Total - Hours`)
+        x$`PCR Total (USD).1` <- as.factor(x$`PCR Total (USD).1`)
+        x$`SS Labor Cost` <- as.factor(x$`SS Labor Cost`)
+        x$`Sub-Projects` <- as.factor(x$`Sub-Projects`)
+        
+        
+# 
+#         
+#         # Remove , sign
+#         x$`T&T Total` <- sub('[,]','',as.character(x$`T&T Total`))
+#         x$`SS Total` <- sub('[,]','',as.character(x$`SS Total`))
+#         x$`PCR Total (USD)` <- sub('[,]','', as.character(x$`PCR Total (USD)`))
+#         x$`T&T Non-Labor Cost` <- sub('[,]','', as.character(x$`T&T Non-Labor Cost`))
+#         x$`T&T Labor Cost` <- sub('[,]','', as.character(x$`T&T Labor Cost`))
+#         x$`T&T Labor Hours` <- sub('[,]','', as.character(x$`T&T Labor Hours`))
+#         x$`T&T Total.1` <- sub('[,]','', as.character(x$`T&T Total.1`))
+#         x$`SS Non-Labor Cost` <- sub('[,]','', as.character(x$`SS Non-Labor Cost`))
+#         x$`SS Labor Cost` <- sub('[,]','', as.character(x$`SS Labor Cost`))
+#         x$`SS Labor Hours` <- sub('[,]','', as.character(x$`SS Labor Hours`))
+#         x$`SS Total (Est)` <- sub('[,]','', as.character(x$`SS Total (Est)`))
+#         x$`Total Non-Labor` <- sub('[,]','', as.character(x$`Total Non-Labor`))
+#         x$`Total Labor` <- sub('[,]','', as.character(x$`Total Labor`))
+#         x$`PCR Total - Hours` <- sub('[,]','', as.character(x$`PCR Total - Hours`))
+#         x$`PCR Total (USD).1` <- sub('[,]','', as.character(x$`PCR Total (USD).1`))
+#         x$`SS Labor Cost` <- sub('[,]','', as.character(x$`SS Labor Cost`))
+#         x$`Sub-Projects` <- sub('[,]','', as.character(x$`Sub-Projects`))
+#         
+# #         
+#         # Convert to numeric
+#         x$`T&T Total` <- as.numeric(x$`T&T Total`)
+#         x$`SS Total` <-as.numeric(x$`SS Total`)
+#         x$`PCR Total (USD)` <- as.numeric(x$`PCR Total (USD)`)
+#         x$`T&T Non-Labor Cost` <- as.numeric(x$`T&T Non-Labor Cost`)
+#         x$`T&T Labor Cost` <- as.numeric(x$`T&T Labor Cost`)
+#         x$`T&T Labor Hours` <- as.numeric(x$`T&T Labor Hours`)
+#         x$`T&T Total.1` <- as.numeric(x$`T&T Total.1`)
+#         x$`SS Non-Labor Cost` <- as.numeric(x$`SS Non-Labor Cost`)
+#         x$`SS Labor Cost` <- as.numeric(x$`SS Labor Cost`)
+#         x$`SS Labor Hours` <- as.numeric(x$`SS Labor Hours`)
+#         x$`SS Total (Est)` <- as.numeric(x$`SS Total (Est)`)
+#         x$`Total Non-Labor` <- as.numeric(x$`Total Non-Labor`)
+#         x$`Total Labor` <- as.numeric(x$`Total Labor`)
+#         x$`PCR Total - Hours` <- as.numeric(x$`PCR Total - Hours`)
+#         x$`PCR Total (USD).1` <- as.numeric(x$`PCR Total (USD).1`)
+#         x$`SS Labor Cost` <- as.numeric(x$`SS Labor Cost`)
+#         x$`Sub-Projects` <- as.numeric(x$`Sub-Projects`)
+        
+        dataframeTT <<- x
+        
+    }
+    ################################################
     
     # Days since PCR was created
     pcrCreated <- function(x){
