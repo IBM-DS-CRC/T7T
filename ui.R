@@ -9,7 +9,6 @@ dashboardPage(
         passwordInput("pass", "Please provide your IBM intranet password."),
         actionButton("do", "Get Report"),
         downloadButton("downloadTT", "Download TT Finance")
-        
     ),
     dashboardBody(
         # Boxes need to be put in a row (or column)
