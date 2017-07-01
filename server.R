@@ -13,7 +13,7 @@ library(shinydashboard)
 library(tibble)
 
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
  
     observeEvent(input$do, {
         # Download Report from IBM Form
@@ -35,10 +35,8 @@ shinyServer(function(input, output) {
         datesTT(dataframeTT)
         
         # 4. In Progress PCRs:
-        
-        
         # 5. Approved PCRs
-        
+        pcrInprogressApproved(dataframeTT)
         
         # 7. # Days In Progress:
         inProgress(dataframeTT)
@@ -370,6 +368,25 @@ shinyServer(function(input, output) {
         }
         dataframeTT <<- x
     }
+    
+    # Process to get In progress PCR and Approved PCR
+    pcrInprogressApproved <- function(x){
+        x$PCRAprrovalInprogress <- ""
+        
+        for(i in 1:nrow(x)){
+            if(x$`PCR State`[i] == "In Progress" & !is.na(x$`TTIM Approve Date`[i]))
+                x$PCRAprrovalInprogress[i] <- "In Progress PCR"
+    
+            if(x$`PCR State`[i] == "Approved" | 
+               x$`PCR State`[i] == "PE approved, but waiting on Billing" | 
+               x$`PCR State`[i] == "Approved and funds received" | 
+               x$`PCR State`[i] == "Approved but waiting on billing")
+                x$PCRAprrovalInprogress[i] <- "Approved PCR"
+        }
+        dataframeTT <<- x
+    }
+    
+    
 
     # Button to download file:    
     output$downloadTT <- downloadHandler(
@@ -378,4 +395,11 @@ shinyServer(function(input, output) {
             write.csv(dataframeTT, file, row.names = FALSE)
         }
     )
+    
+    close the R session when Chrome closes
+    session$onSessionEnded(function() {
+        stopApp()
+        q("no")
+    })
+    
 })

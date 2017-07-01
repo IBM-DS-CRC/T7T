@@ -29,7 +29,7 @@ ui <- dashboardPage(
 )
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {
+server <- function(input, output, session) {
     observeEvent(input$do, {
             # Download Report from IBM Form
             downloadReport()
