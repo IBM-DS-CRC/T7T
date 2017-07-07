@@ -6,7 +6,7 @@
 
 ## Requirements
 
- *In order to use this application you will need:
+In order to use this application you will need:
 
 - Access to W3 account.
 - Access to TT Finance IBM Form.

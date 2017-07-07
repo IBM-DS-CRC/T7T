@@ -14,7 +14,7 @@ library(tibble)
 
 
 shinyServer(function(input, output, session) {
-  
+
   output$progressBox <- renderInfoBox({
     infoBox(
       "Report", "Progress 0%", icon = icon("download"),
@@ -30,68 +30,86 @@ shinyServer(function(input, output, session) {
   
   
   observeEvent(input$do, {
-    # Download Report from IBM Form
-    downloadReport()
     
-    # Change Variable names
-    variablenameChange(dataframeTT)
-    
-    # 1. Delete blanks from ID Column
-    blacksRemove(dataframeTT)
-    
-    # 2. North American Accounts
-    northAmericaAccounts(dataframeTT)
-    
-    # 3. Sector Info:
-    setorInfo(dataframeTT)
-    
-    # 6. Dates:
-    datesTT(dataframeTT)
-    
-    # 4. In Progress PCRs:
-    
-    output$progressBox <- renderInfoBox({
-      infoBox(
-        "Report", "Progress 57%", icon = icon("download"),
-        color = "light-blue"
-      )
+    # When the button is clicked, wrap the code in a call to `withBusyIndicatorServer()`
+    withBusyIndicatorServer("do", {
+      Sys.sleep(1)
+      if (input$login == "" || input$pass == "") {
+        stop("Please enter you credentials before calling the report")
+      }
+      else{
+        ##########
+        
+        # Download Report from IBM Form
+        downloadReport()
+        
+        # Change Variable names
+        variablenameChange(dataframeTT)
+        
+        # 1. Delete blanks from ID Column
+        blacksRemove(dataframeTT)
+        
+        # 2. North American Accounts
+        northAmericaAccounts(dataframeTT)
+        
+        # 3. Sector Info:
+        setorInfo(dataframeTT)
+        
+        # 6. Dates:
+        datesTT(dataframeTT)
+        
+        # 4. In Progress PCRs:
+        
+        output$progressBox <- renderInfoBox({
+          infoBox(
+            "Report", "Progress 57%", icon = icon("download"),
+            color = "light-blue"
+          )
+        })
+        # 5. Approved PCRs
+        pcrInprogressApproved(dataframeTT)
+        
+        # 7. # Days In Progress:
+        inProgress(dataframeTT)
+        
+        # 8. PCRs over 10 Days
+        pcrOver10F(dataframeTT)
+        
+        # 9. Days since PCR was created:
+        pcrCreated(dataframeTT)
+        
+        # Format conversion:
+        formatCoversion(dataframeTT)
+        
+        ##############################
+        
+        #Number of rows
+        NumberOfRows <- length(dataframeTT$ID)
+        
+        
+        output$progressBox <- renderInfoBox({
+          infoBox(
+            "Report", "Progress 100%", icon = icon("download"),
+            color = "green"
+          )
+        })
+        
+        
+        output$progressBox2 <- renderInfoBox({
+          infoBox(
+            "Count of rows", NumberOfRows, icon = icon("list"),
+            color = "light-blue"
+          )
+        })
+        
+        
+        
+        
+        ##########
+      }
     })
-    # 5. Approved PCRs
-    pcrInprogressApproved(dataframeTT)
     
-    # 7. # Days In Progress:
-    inProgress(dataframeTT)
-    
-    # 8. PCRs over 10 Days
-    pcrOver10F(dataframeTT)
-    
-    # 9. Days since PCR was created:
-    pcrCreated(dataframeTT)
-    
-    # Format conversion:
-    formatCoversion(dataframeTT)
-    
-    ##############################
-    
-    #Number of rows
-    NumberOfRows <- length(dataframeTT$ID)
-    
-    
-    output$progressBox <- renderInfoBox({
-      infoBox(
-        "Report", "Progress 100%", icon = icon("download"),
-        color = "green"
-      )
-    })
-    
-    
-    output$progressBox2 <- renderInfoBox({
-      infoBox(
-        "Count of rows", NumberOfRows, icon = icon("list"),
-        color = "light-blue"
-      )
-    })
-    
+   
     
     
   })
@@ -428,18 +446,17 @@ shinyServer(function(input, output, session) {
   
   
   
-  # Button to download file:    
+  # Button to download file: 
   output$downloadTT <- downloadHandler(
-    filename = function(){paste('TTFinanceReport',Sys.Date(),'.csv')},
-    content = function(file){
-      write.csv(dataframeTT, file, row.names = FALSE)
-    }
-  )
+      filename = function(){paste('TTFinanceReport',Sys.Date(),'.csv')},
+      content = function(file){
+        write.csv(dataframeTT, file, row.names = FALSE)
+    })
   
   #close the R session when Chrome closes
-  session$onSessionEnded(function() {
-    stopApp()
-    q("no")
-  })
+#  session$onSessionEnded(function() {
+#    stopApp()
+#    q("no")
+#  })
   
 })
