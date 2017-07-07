@@ -27,11 +27,11 @@ shinyServer(function(input, output, session) {
       color = "light-blue"
     )
   })
-  
+
   
   observeEvent(input$do, {
-    
-    # When the button is clicked, wrap the code in a call to `withBusyIndicatorServer()`
+
+        # When the button is clicked, wrap the code in a call to `withBusyIndicatorServer()`
     withBusyIndicatorServer("do", {
       Sys.sleep(1)
       if (input$login == "" || input$pass == "") {
@@ -101,10 +101,6 @@ shinyServer(function(input, output, session) {
             color = "light-blue"
           )
         })
-        
-        
-        
-        
         ##########
       }
     })
@@ -453,10 +449,16 @@ shinyServer(function(input, output, session) {
         write.csv(dataframeTT, file, row.names = FALSE)
     })
   
+  observe({
+    shinyjs::toggleState("downloadTT", input$login != "" && input$pass != "" )
+  })
+  
+  
+  
   #close the R session when Chrome closes
-#  session$onSessionEnded(function() {
-#    stopApp()
-#    q("no")
-#  })
+  session$onSessionEnded(function() {
+    stopApp()
+    q("no")
+  })
   
 })
