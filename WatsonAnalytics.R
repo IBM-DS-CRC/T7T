@@ -29,7 +29,7 @@ ww1$all_headers
 
 
 
-GET("https://watson.analytics.ibmcloud.com/?loginAccountId=3ZPDZ2KL8DE0&loginTenantId=Q1OQDI7I0T3X54",config = authenticate("johnalva@cr.ibm.com", "johALVME143"))
+GET("https://watson.analytics.ibmcloud.com/?loginAccountId=3ZPDZ2KL8DE0&loginTenantId=Q1OQDI7I0T3X54")
 ww <- GET("https://w3id.sso.ibm.com/isam/oidc/endpoint/amapp-runtime-oidcidp/authorize?client_id=YjlhYTU1YzEtMTBkYy00&scope=openid&response_type=code&redirect_uri=https%3A%2F%2Fwatson.analytics.ibmcloud.com%3A443%2Fwatsonanalytics%2Fopenid%2Fcode%2Fw3id&state=string")
 ww1 <- GET("https://w3id.sso.ibm.com/isam/oidc/endpoint/amapp-runtime-oidcidp/authorize?client_id=YjlhYTU1YzEtMTBkYy00&scope=openid&response_type=code&redirect_uri=https%3A%2F%2Fwatson.analytics.ibmcloud.com%3A443%2Fwatsonanalytics%2Fopenid%2Fcode%2Fw3id&state=string")
 
