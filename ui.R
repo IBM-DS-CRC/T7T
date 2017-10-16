@@ -19,8 +19,15 @@ dashboardPage(
         class = "btn-primary"
       )
     ),
+    br(), 
+    
+     downloadButton("downloadTT", "Download"),
+    
     br(),
-     downloadButton("downloadTT", "Download")
+    
+    br(),
+   
+    actionButton("upload", "Upload to Watson")
     
     
   ),

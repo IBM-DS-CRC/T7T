@@ -102,10 +102,15 @@ shinyServer(function(input, output, session) {
           )
         })
         ##########
+        
+       
       }
     })
     
-   
+    # Upload report to Watson
+    observeEvent(input$upload ,{ 
+      Upload_data_Watson()
+    })
     
     
   })
@@ -444,7 +449,7 @@ shinyServer(function(input, output, session) {
   
   # Button to download file: 
   output$downloadTT <- downloadHandler(
-      filename = function(){paste('TTFinanceReport',Sys.Date(),'.csv')},
+      filename = function(){paste('TTFinanceReport.csv')},
       content = function(file){
         write.csv(dataframeTT, file, row.names = FALSE)
     })
@@ -453,12 +458,34 @@ shinyServer(function(input, output, session) {
     shinyjs::toggleState("downloadTT", input$login != "" && input$pass != "" )
   })
   
+  ## Upload report into Watson
+  
+  Upload_data_Watson<- function(x){
+  
+  file_To_Upload<-upload_file("C:/Users/kurbina/Downloads/TTFinanceReport.csv")
+  
+  
+  Auth<- "SdnXO+5LGdsY/WhkUltdG7qRadADlONaN8+Qx0ew7HMvDA/xPnh6qQqFFd1Q/dzkp4kDUy8RGsKz/X6SuWflq7kBIcEWSxzCSpEDckHdDdX2iXDxCm0o8wrpOMqRyGqa/ANSMQLg12DsLTv7KjstFvbE5Q9BsVs42Ay4n9kAR42Ahgs9L770ri4Dp9lA8voIAItXSVq2hiOrq7pgQgMJ0HjpEeOleT/TDtVkum6pNmDqSNwU85Hw2jiDGk/Q60i4IAqcdLKdr9Q2PhC6df6zq66MW/g8Zn9IL/AtjPN0vvf0CBhYf9orf+9jRQd9GgP1u8zyFIZOQ9dFVTDjKAq/xqtTvKCDTgTeUpK+MWhQvwMNwwZyCAcHB/Dj8rm5Hh1MsBULAdhazNU=;=;LS0="
+  
+  Client<- 'dae4613f-a5da-498c-bf7a-238fc29571d6'
+  Secret<- 'nP4wK1rL6cB3jY1xI0jM2tI7uM7uN7oH3sL2pD5gT0jT0tU3wK'
+  
+  
+  Upload_data<-PUT( url = "https://api.ibm.com/watsonanalytics/run/data/v1/datasets/950707c2-5fd3-4439-8981-3f1ff8bd6a81/content",
+                    add_headers('Content-Type' = 'text/csv'),
+                    add_headers('Accept'= 'application/json'),
+                    add_headers('X-IBM-Client-Secret' = Secret),
+                    add_headers('X-IBM-Client-Id' = Client),
+                    add_headers('Authorization: Bearer'=Auth), body= file_To_Upload)
+  
+  }
+  
   
   
   #close the R session when Chrome closes
-  session$onSessionEnded(function() {
-    stopApp()
-    q("no")
-  })
+#  session$onSessionEnded(function() {
+ #   stopApp()
+  #  q("no")
+ # })
   
 })
