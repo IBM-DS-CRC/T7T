@@ -26,9 +26,14 @@ dashboardPage(
     br(),
     
     br(),
-   
-    actionButton("upload", "Upload to Watson")
     
+    withBusyIndicatorUI(
+      actionButton(
+        "does",
+        "Upload Data",
+        class = "btn-primary"
+      )
+    )
     
   ),
   dashboardBody(

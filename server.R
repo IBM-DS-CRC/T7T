@@ -108,8 +108,15 @@ shinyServer(function(input, output, session) {
     })
     
     # Upload report to Watson
-    observeEvent(input$upload ,{ 
-      Upload_data_Watson()
+    
+    
+    observeEvent(input$does ,{
+      withBusyIndicatorServer("does", {
+        Sys.sleep(1)
+        Upload_data_Watson()
+        
+      })
+      
     })
     
     
